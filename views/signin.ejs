@@ -3,26 +3,20 @@
 
 <head>
     <%- include('./partials/head.ejs') %>
-        <title> BLOGGER | SIGNUP </title>
+        <title> BLOGGER | SIGNIN </title>
 </head>
 
 <body>
     <!-- Navigation bar  -->
     <%- include('./partials/navbar.ejs') %>
-        <!-- Signup page -->
+        <!-- Signip page -->
         <div class="container mt-4">
-            <form action="/user/signup" method="post">
+            <form action="/user/signin" method="post">
                 <!-- email field -->
                 <div class="mb-3">
                     <label for="email" class="form-label">Give us your email</label>
                     <input type="email" class="form-control" id="email" aria-describedby="email" name="email">
                     <div id="email" class="form-text"></div>
-                </div>
-                <!-- usename field -->
-                <div class="mb-3">
-                    <label for="fullname" class="form-label">Set up a username</label>
-                    <input type="text" class="form-control" id="fullname" aria-describedby="fullname" name="fullname">
-                    <div id="fullname" class="form-text"></div>
                 </div>
                 <!-- password field  -->
                 <div class="mb-3">
@@ -35,4 +29,5 @@
         <!-- Scripts -->
         <%- include('./partials/scripts.ejs') %>
 </body>
+
 </html>
