@@ -1,6 +1,7 @@
 // MODELS > user.js model 
 import { Schema, model } from "mongoose";
 import { createHmac, randomBytes } from "crypto";
+import { create_token_for_user }  from "../services/authentication.js"; 
 
 const userSchema = new Schema({
     fullname : {
@@ -43,7 +44,7 @@ userSchema.pre('save', function(next) {
 });
 
 // Virtual function definition for matching password 
-userSchema.static("matchPassword", async function(email,password) {
+userSchema.static("matchPasswordAndGenerateToken", async function(email,password) {
     const user = await this.findOne({ email });
     // If the user is not found
     if ( !user ) throw new Error("USER NOT FOUND!")
@@ -53,7 +54,8 @@ userSchema.static("matchPassword", async function(email,password) {
     const newHashedPassword = createHmac("sha256", salt).update(password).digest("hex");
     // Checking if the passwords matches for not 
     if ( newHashedPassword !== userProvidedHash ) throw new Error("PASSWORD DOES NOT MATCH!")
-    return user;
+    const token = create_token_for_user(user);
+    return token;
 });
 
 // Model for the Schema definition

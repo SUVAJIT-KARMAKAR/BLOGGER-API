@@ -25,7 +25,13 @@ export const post_user_signup = async (request, response) => {
 // POST : Handling the user sign in page
 export const post_user_signin = async (request,response) => {
     const { email, password } = request.body;
-    const user = await User.matchPassword(email,password);
-    console.log(user);
-    return response.redirect("/homepage");
+    try {
+        const token = await User.matchPasswordAndGenerateToken(email,password);
+        console.log(token);
+        return response.cookie("token", token).redirect("/homepage");
+    } catch (error) {
+        return response.render("signin", {
+            error : "INCORRECT EMAIL OR PASSWORD !"
+        })
+    }
 }
