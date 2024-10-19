@@ -11,6 +11,11 @@ export const get_user_signup = (request, response) => {
     return response.render("signup");
 }
 
+// GET : Handling logout for the logged in user
+export const handle_logout = (request, response) => {
+    return response.clearCookie("token").redirect("/homepage")
+}
+
 // POST : Handling the user sign up page
 export const post_user_signup = async (request, response) => {
     const { fullname, email, password } = request.body;
