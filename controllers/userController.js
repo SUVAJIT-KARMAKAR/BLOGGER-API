@@ -27,7 +27,6 @@ export const post_user_signin = async (request,response) => {
     const { email, password } = request.body;
     try {
         const token = await User.matchPasswordAndGenerateToken(email,password);
-        console.log(token);
         return response.cookie("token", token).redirect("/homepage");
     } catch (error) {
         return response.render("signin", {

@@ -2,8 +2,10 @@
 import express from 'express';
 import path from 'path';
 import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
 import user_route from "./routes/userRoutes.js";
 import home_route from "./routes/homeRoute.js";
+import { check_for_authentication_cookie } from './middlewares/check.js';
 
 // Application configuration
 const application = express();
@@ -18,6 +20,8 @@ mongoose.connect('mongodb://localhost:27017/blogger')
 application.set('view engine', 'ejs');
 application.set("views", path.resolve("./views"));
 application.use(express.urlencoded({ extended : false }));
+application.use(cookieParser());
+application.use(check_for_authentication_cookie("token"));
 
 // Routes 
 application.use("/", home_route);
