@@ -15,7 +15,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Add a blog</a>
                     </li>
-
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -37,12 +36,14 @@
                         <a class="nav-link" href="/user/signup"> Create an account </a>
                     </li>
                 <% } %>
-
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search your blog here" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit"> SEARCH </button>
-            </form>
+            <!-- Search bar -->
+            <% if (locals.user) { %>
+                <form class="d-flex ms-auto">
+                    <input class="form-control me-2" type="search" placeholder="Search your blog here" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">SEARCH</button>
+                </form>
+            <% } %>
         </div>
     </div>
 </nav>
