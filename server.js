@@ -3,8 +3,11 @@ import express from 'express';
 import path from 'path';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
+
 import user_route from "./routes/userRoutes.js";
 import home_route from "./routes/homeRoute.js";
+import blog_route from "./routes/blogRoute.js"
+
 import { check_for_authentication_cookie } from './middlewares/check.js';
 
 // Application configuration
@@ -26,6 +29,7 @@ application.use(check_for_authentication_cookie("token"));
 // Routes 
 application.use("/", home_route);
 application.use("/user", user_route);
+application.use("/blog", blog_route);
 
 // Server listen 
 application.listen(PORT, (error) => {
