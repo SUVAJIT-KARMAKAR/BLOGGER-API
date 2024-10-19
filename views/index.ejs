@@ -1,12 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <%- include('./partials/head.ejs') %>
-    <title> BLOGGER | HOME </title>
+        <title> BLOGGER | HOME </title>
 </head>
+
 <body>
     <!-- Navigation bar  -->
     <%- include('./partials/navbar.ejs') %>
+        <!-- Home page -->
+        <!-- Header -->
+        <header class="bg-dark text-white text-center py-5">
+            <h1 class="display-4">BLOGGER</h1>
+            <p class="lead">A platform where users can create, share, and discover amazing blogs.</p>
+        </header>
+        <!-- Authoriztaion content only for logged in users -->
+        <% if (locals.user) { %>
+            <div class="d-flex align-items-center" style="height: 100vh;">
+                <div class="mx-auto">
+                    No have no available blogs for now.
+                </div>
+            </div>
+        <% } else { %>
+                <!-- Main content -->
+                <div class="container my-5">
+                    <!-- Small description -->
+                    <div class="text-center mb-5">
+                        <p>A blogging platform designed for users to easily create and share their
+                            thoughts with the world. Whether you're an aspiring writer or an avid reader, this platform
+                            provides everything you need to get started.</p>
+                    </div>
+                    <!-- Feature cards (2x2 matrix) -->
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        <!-- Feature 1 -->
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Create Your Own Blog</h5>
+                                    <p class="card-text">Easily create a blog with our user-friendly editor. Customize
+                                        your content with rich formatting options and publish instantly!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Feature 2 -->
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Engage with the Community</h5>
+                                    <p class="card-text">Read blogs from other users, leave comments, and engage in
+                                        meaningful discussions on a wide variety of topics.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Feature 3 -->
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Personalized Dashboard</h5>
+                                    <p class="card-text">Get a personalized dashboard that tracks your favorite blogs,
+                                        shows recommendations, and provides insights into your audience.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Feature 4 -->
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Mobile Friendly</h5>
+                                    <p class="card-text">Our platform is fully optimized for mobile devices, allowing
+                                        you to create and read blogs on the go, anytime, anywhere.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sign-up button -->
+                    <div class="text-center mt-5">
+                        <a href="/user/signup" class="btn btn-primary btn-lg"> Sign Up Now </a>
+                    </div>
+                </div>
+                <% } %>
     <!-- Scripts -->
     <%- include('./partials/scripts.ejs') %>
 </body>
