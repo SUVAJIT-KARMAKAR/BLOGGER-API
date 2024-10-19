@@ -29,7 +29,7 @@ const userSchema = new Schema({
         enum : ["USER", "ADMIN"],
         default : "USER"
     }
-}, { timestamps : true });
+}, { timestamps : true } );
 
 // Password encryption 
 userSchema.pre('save', function(next) {

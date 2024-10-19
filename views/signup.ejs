@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+        <title> BLOGGER | SIGNUP </title>
+</head>
+
+<body>
+    <!-- Navigation bar  -->
+    <%- include('./partials/navbar.ejs') %>
+        <!-- Signup page -->
+        <div class="container mt-4">
+            <form>
+                <!-- email field -->
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Give us your email</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text"></div>
+                </div>
+                <!-- usename field -->
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Set up a username</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text"></div>
+                </div>
+                <!-- password field  -->
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Set up a password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <button type="submit" class="btn btn-primary">SUBMIT</button>
+            </form>
+        </div>
+        <!-- Scripts -->
+        <%- include('./partials/scripts.ejs') %>
+</body>
+
+</html>
