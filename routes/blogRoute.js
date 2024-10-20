@@ -12,7 +12,7 @@ const router = Router();
 // Creating a photo storage zone for the uploaded cover images
 const storage = multer.diskStorage({
     destination : function ( request, file, cb ) {
-        cb ( null, path.resolve(`./public/uploads/${request.user._id}`));
+        cb ( null, path.resolve(`./public/uploads`));
     },
     filename : function ( request, file, cb ) {
         const filename = `${Date.now()}-${file.originalname}`;
@@ -24,7 +24,7 @@ const upload = multer({ storage : storage });
 
 // Routes
 router.get("/addblog", get_new_blog);
-router.post("/addblog", post_create_blog);
+router.post("/addblog", upload.single('coverimage'), post_create_blog);
 
 // Exporting
 export default router;

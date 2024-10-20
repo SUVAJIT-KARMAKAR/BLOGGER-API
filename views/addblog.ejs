@@ -11,7 +11,7 @@
     <%- include('./partials/navbar.ejs') %>
         <!-- Add blog form  -->
         <div class="container mt-4">
-            <form action="/blog/addblog", method="post">
+            <form action="/blog/addblog", method="post", enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="text" class="form-label"> TITLE OF YOUR BLOG </label>
                     <input type="text" name="title" class="form-control" id="title" placeholder="Write your title of the blog here">
