@@ -1,6 +1,7 @@
 // Importing the requried modules in the workspace 
 import express from 'express';
 import path from 'path';
+import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 
@@ -12,10 +13,11 @@ import { check_for_authentication_cookie } from './middlewares/check.js';
 
 // Application configuration
 const application = express();
-const PORT = 8000;
+dotenv.config();
+const PORT = process.env.PORT || 8000;
 
 // Database connection
-mongoose.connect('mongodb://localhost:27017/blogger')
+mongoose.connect(process.env.MONGO_DATABASE_URI)
         .then(() => console.log(`DATABASE IS CONNECTED AT PORT :2717`))
         .catch((error) => console.log(`DATABASE CRASHED DUE TO ${error}`))
 
@@ -40,5 +42,3 @@ application.listen(PORT, (error) => {
         console.log(`SERVER IS RUNNING AT PART ${PORT}`)
     }
 });
-
-// 26:30
