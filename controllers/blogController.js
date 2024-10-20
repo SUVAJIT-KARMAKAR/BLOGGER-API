@@ -17,3 +17,11 @@ export const post_create_blog = async (request, response) => {
     return response.redirect("/homepage");
     // return response.redirect(`/blog/${blog._id}`);
 }
+
+export const check_detailed_blog = async (request,response) => {
+    const detailed_blog = await Blog.findById(request.params.id);
+    return response.render("showblog", {
+        user : request.user,
+        detailed_blog
+    });
+}

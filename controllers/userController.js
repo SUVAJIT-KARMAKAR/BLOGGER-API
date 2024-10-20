@@ -24,7 +24,7 @@ export const post_user_signup = async (request, response) => {
         email,
         password
     });
-    return response.redirect("/homepage");
+    return response.redirect("/user/signin");
 }
 
 // POST : Handling the user sign in page

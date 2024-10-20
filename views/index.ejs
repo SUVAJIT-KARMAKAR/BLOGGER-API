@@ -4,6 +4,17 @@
 <head>
   <%- include('./partials/head.ejs') %>
   <title> BLOGGER | HOME </title>
+
+  <style>
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+</style>
 </head>
 
 <body>
@@ -20,23 +31,26 @@
   <% if (locals.user) { %>
     <!-- If user has blogs, display them -->
     <% if (locals.blogs && locals.blogs.length > 0) { %>
-        <div class="container mt-3">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-              <% blogs.forEach((blog) => { %>
-                <div class="col">
-                  <div class="card h-100">
-                    <img src="<%= blog.coverimageurl %>" class="card-img-top" alt="Blog cover image">
+      <div class="container mt-3 mb-3">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <% blogs.forEach((blog) => { %>
+            <div class="col">
+                <div class="card h-100 shadow-sm" style="background-color: #f8f9fa;">
+                    <img src="<%= blog.coverimageurl %>" class="card-img-top" alt="Blog cover image" style="object-fit: cover; height: 200px;">
                     <div class="card-body">
-                      <h5 class="card-title"><%= blog.title %></h5>
-                      <p class="card-text"><%= blog.body.length > 150 ? blog.body.substring(0, 150) + '...' : blog.body %></p>
-                      <a href="/blogs/<%= blog._id %>" class="btn btn-primary">Read More</a>
+                        <h5 class="card-title"><%= blog.title %></h5>
+                        <p class="card-text">
+                            <%= blog.body.length > 150 ? blog.body.substring(0, 150) + '...' : blog.body %>
+                        </p>
+                        <small class="text-muted">By <%= blog.createdby %></small>
+                        <br />
+                        <a href="/blog/<%= blog._id %>" class="btn btn-primary mt-2">Read More</a>
                     </div>
-                  </div>
                 </div>
-              <% }) %>
             </div>
-          </div>
-          
+            <% }) %>
+        </div>
+    </div>
     <% } else { %>
       <!-- If user is logged in but has no blogs -->
       <div class="d-flex align-items-center" style="height: 100vh;">

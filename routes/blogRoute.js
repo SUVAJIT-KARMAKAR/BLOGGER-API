@@ -4,7 +4,8 @@ import multer from "multer";
 import path from 'path';
 import {
     get_new_blog,
-    post_create_blog
+    post_create_blog,
+    check_detailed_blog
 } from "../controllers/blogController.js";
 
 const router = Router();
@@ -25,6 +26,7 @@ const upload = multer({ storage : storage });
 // Routes
 router.get("/addblog", get_new_blog);
 router.post("/addblog", upload.single('coverimage'), post_create_blog);
+router.get("/:id", check_detailed_blog);
 
 // Exporting
 export default router;
