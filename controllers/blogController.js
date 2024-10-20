@@ -7,10 +7,11 @@ export const get_new_blog = (request, response) => {
 }
 
 export const post_create_blog = async (request, response) => {
-    const { title, body } = request.body;
-    const blog = await Blog.create({
+    const { title, body, username } = request.body;
+    await Blog.create({
         title,
         body,
+        username,
         coverimageurl :`uploads/${request.file.filename}`,
         createdby : request.user._id
     })
@@ -19,9 +20,9 @@ export const post_create_blog = async (request, response) => {
 }
 
 export const check_detailed_blog = async (request,response) => {
-    const detailed_blog = await Blog.findById(request.params.id);
+    const found_blog = await Blog.findById(request.params.id).populate("createdBy");
     return response.render("showblog", {
         user : request.user,
-        detailed_blog
+        blog : found_blog
     });
 }

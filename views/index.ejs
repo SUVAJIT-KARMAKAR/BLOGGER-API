@@ -42,7 +42,6 @@
                         <p class="card-text">
                             <%= blog.body.length > 150 ? blog.body.substring(0, 150) + '...' : blog.body %>
                         </p>
-                        <small class="text-muted">By <%= blog.createdby %></small>
                         <br />
                         <a href="/blog/<%= blog._id %>" class="btn btn-primary mt-2">Read More</a>
                     </div>
@@ -55,7 +54,7 @@
       <!-- If user is logged in but has no blogs -->
       <div class="d-flex align-items-center" style="height: 100vh;">
         <div class="mx-auto">
-          You have not posted any blogs yet.
+          No blogs here yet.
         </div>
       </div>
     <% } %>
