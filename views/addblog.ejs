@@ -11,21 +11,23 @@
     <%- include('./partials/navbar.ejs') %>
         <!-- Add blog form  -->
         <div class="container mt-4">
-            <div class="mb-3">
-                <label for="text" class="form-label">TITLE OF YOUR BLOG </label>
-                <input type="text" name="title" class="form-control" id="title" placeholder="Write your title of the blog here">
-            </div>
-            <div class="mb-3">
-                <label for="body" class="form-label"> WRITE YOUR BLOG CONTENT HERE </label>
-                <textarea class="form-control" id="body" name="body" rows="3"></textarea>
-            </div>
-            <div class="mb-3">
-                <label for="coverimage" class="form-label"> UPLOAD YOUR COVER IMAGE HERE </label>
-                <input type="file" name="coverimage" class="form-control" id="coveriamge">
-            </div>
-            <div class="mb-3">
-                <button class="btn btn-outline-primary" type="submit"> SUBMIT </button>
-            </div>
+            <form action="/blog/addblog", method="post">
+                <div class="mb-3">
+                    <label for="text" class="form-label"> TITLE OF YOUR BLOG </label>
+                    <input type="text" name="title" class="form-control" id="title" placeholder="Write your title of the blog here">
+                </div>
+                <div class="mb-3">
+                    <label for="body" class="form-label"> WRITE YOUR BLOG CONTENT HERE </label>
+                    <textarea class="form-control" id="body" name="body" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="coverimage" class="form-label"> UPLOAD YOUR COVER IMAGE HERE </label>
+                    <input type="file" name="coverimage" class="form-control" id="coveriamge">
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-outline-primary" type="submit"> SUBMIT </button>
+                </div>
+            </form>
         </div>
         <!-- Scripts -->
         <%- include('./partials/scripts.ejs') %>

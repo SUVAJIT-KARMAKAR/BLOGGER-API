@@ -39,3 +39,5 @@ application.listen(PORT, (error) => {
         console.log(`SERVER IS RUNNING AT PART ${PORT}`)
     }
 });
+
+// 26:30
