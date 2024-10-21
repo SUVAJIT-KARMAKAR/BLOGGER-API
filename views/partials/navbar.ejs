@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">BLOGGER</a>
+        <a class="navbar-brand fw-bold" href="#" style="font-size: 1.5rem; letter-spacing: 1px;">BLOGGER</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -10,7 +10,6 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/homepage">Home</a>
                 </li>
-                <!-- Validation for the user logged in  -->
                 <% if ( locals.user ) { %>
                     <li class="nav-item">
                         <a class="nav-link" href="/blog/addblog">Add a blog</a>
@@ -21,26 +20,23 @@
                             <%= user.fullname %>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/user/logout"> Log out </a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#"> About us </a></li>
+                            <li><a class="dropdown-item" href="/user/logout">Log out</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">About us</a></li>
                         </ul>
                     </li>
                 <% } else { %>
                     <li class="nav-item">
-                        <a class="nav-link" href="/user/signin"> Sign in </a>
+                        <a class="nav-link" href="/user/signin">Sign in</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/user/signup"> Create an account </a>
+                        <a class="nav-link" href="/user/signup">Create an account</a>
                     </li>
                 <% } %>
             </ul>
-            <!-- Search bar -->
             <% if (locals.user) { %>
-                <form class="d-flex ms-auto">
-                    <input class="form-control me-2" type="search" placeholder="Search your blog here" aria-label="Search">
+                <form class="d-flex ms-auto" method="GET" action="/search">
+                    <input class="form-control me-2" type="search" name="query" placeholder="Search your blog here" aria-label="Search" required>
                     <button class="btn btn-outline-success" type="submit">SEARCH</button>
                 </form>
             <% } %>
@@ -48,16 +44,77 @@
     </div>
 </nav>
 
-<!-- Error handling -->
-<% if (locals.error) { %>
-    <div class="container mt-4">
-        <div class="alert alert-danger d-flex align-items-center" role="alert">
-            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-                <use xlink:href="#exclamation-triangle-fill" />
-            </svg>
-            <div>
-                <%= locals.error %>
-            </div>
-        </div>
-    </div>
-<% } %>
+<style>
+    /* Navbar styling */
+    .navbar {
+        background-color: #343a40;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Hover effect on navbar items */
+    .navbar-nav .nav-link {
+        color: #ffffff !important;
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        transition: color 0.3s ease, background-color 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+        background-color: #007bff;
+        color: #ffffff !important;
+        border-radius: 5px;
+    }
+
+    /* Dropdown menu hover effect */
+    .dropdown-menu {
+        border: none;
+        background-color: #ffffff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 0.3s ease;
+    }
+
+    .dropdown-item:hover {
+        background-color: #007bff;
+        color: #ffffff;
+    }
+
+    /* Search bar */
+    .form-control {
+        border-radius: 50px;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #007bff;
+    }
+
+    /* Button animation */
+    .btn-outline-success {
+        border-radius: 50px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn-outline-success:hover {
+        background-color: #007bff;
+        color: #ffffff;
+        transform: translateY(-2px);
+    }
+
+    /* Navbar brand hover */
+    .navbar-brand:hover {
+        color: #007bff !important;
+    }
+
+    /* Dropdown animation */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+</style>

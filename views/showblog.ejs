@@ -3,30 +3,106 @@
 
 <head>
     <%- include('./partials/head.ejs') %>
-        <title> BLOGGER | BLOG </title>
+    <title> BLOGGER | BLOG </title>
 </head>
 
 <body>
     <!-- Navigation bar  -->
     <%- include('./partials/navbar.ejs') %>
-    <!-- Blogs page  -->
-    <div class="container mt-3 mb-3">
-        <div class="card mb-3">
-            <!-- <img src="<%= blog.coverimageurl %>" class="card-img-top"> -->
+
+    <!-- Blogs page -->
+    <div class="container mt-5 mb-5">
+        <!-- Blog Post -->
+        <div class="card mb-4 shadow-sm" style="border: none;">
             <div class="card-body">
-                <h5 class="card-title"> <%= blog.title %> </h5>
-                <p class="card-text"> <%= blog.body %> </p>
-                <p class="card-text"><small class="text-muted"></small></p>
+                <h2 class="card-title mb-4 text-primary"> <%= blog.title %> </h2>
+                <p class="card-text lead" style="line-height: 1.8;"> <%= blog.body %> </p>
+                <p class="card-text">
+                    <small class="text-muted">Posted on <%= blog.createdAt.toDateString() %></small>
+                </p>
             </div>
         </div>
-        <div class="card mb-3">
-            <div class="card-body">
-                <p> <strong>WRITTEN BY : </strong> <%= blog.username %> </p>
+
+        <!-- Author Information -->
+        <div class="card mb-4 border-0 bg-light">
+            <div class="card-body d-flex align-items-center">
+                <div>
+                    <p class="mb-0">
+                        <strong>WRITTEN BY: </strong> 
+                        <span class="text-primary"><%= blog.username %></span>
+                    </p>
+                    <p class="text-muted"><small>Written on <%= blog.createdAt.toDateString() %></small></p>
+                </div>
             </div>
         </div>
     </div>
+
     <!-- Scripts -->
     <%- include('./partials/scripts.ejs') %>
 </body>
 
 </html>
+
+<style>
+    /* Blog Page Styling */
+    .container {
+        max-width: 800px;
+    }
+
+    /* Card styling */
+    .card {
+        border-radius: 15px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Title styling */
+    .card-title {
+        font-weight: 700;
+        font-size: 2rem;
+        letter-spacing: 1px;
+        transition: color 0.3s ease;
+    }
+
+    .card-title:hover {
+        color: #007bff;
+    }
+
+    /* Author information */
+    .card-body p {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Shadow and border effects */
+    .card {
+        border: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Subtle text color for date */
+    .text-muted {
+        color: #6c757d !important;
+    }
+
+    /* Primary color and hover effect for author name */
+    .text-primary {
+        color: #007bff !important;
+        font-weight: bold;
+    }
+
+    /* Spacing for content */
+    .lead {
+        font-size: 1.125rem;
+        font-weight: 400;
+    }
+</style>

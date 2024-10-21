@@ -3,18 +3,43 @@
 
 <head>
   <%- include('./partials/head.ejs') %>
-  <title> BLOGGER | HOME </title>
+  <title>BLOGGER | HOME</title>
 
   <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    /* Header styling */
+    header {
+      background: linear-gradient(90deg, rgba(0, 123, 255, 0.7), rgba(0, 123, 255, 0.9)), url('header-background.jpg') no-repeat center center;
+      background-size: cover;
+      color: white;
+    }
+
+    /* Hover effects for cards */
     .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
 
     .card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-</style>
+
+    /* Hover effect for buttons */
+    .btn-primary:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    /* Text styles */
+    .lead {
+      font-size: 1.5rem;
+      font-weight: 300;
+    }
+  </style>
 </head>
 
 <body>
@@ -22,86 +47,79 @@
   <%- include('./partials/navbar.ejs') %>
 
   <!-- Header -->
-  <header class="bg-dark text-white text-center py-5">
-    <h1 class="display-4">BLOGGER</h1>
-    <p class="lead">A platform where users can create, share, and discover amazing blogs.</p>
+  <header class="text-white text-center py-5">
+    <div class="container">
+      <h1 class="display-4 fw-bold">BLOGGER</h1>
+      <p class="lead">A platform where users can create, share, and discover amazing blogs.</p>
+    </div>
   </header>
 
-  <!-- Logged in users -->
+  <!-- Logged-in user blogs section -->
   <% if (locals.user) { %>
-    <!-- If user has blogs, display them -->
     <% if (locals.blogs && locals.blogs.length > 0) { %>
-      <div class="container mt-3 mb-3">
+      <div class="container mt-5 mb-5">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <% blogs.forEach((blog) => { %>
-            <div class="col">
-                <div class="card h-100 shadow-sm" style="background-color: #f8f9fa;">
-                    <img src="<%= blog.coverimageurl %>" class="card-img-top" alt="Blog cover image" style="object-fit: cover; height: 200px;">
-                    <div class="card-body">
-                        <h5 class="card-title"><%= blog.title %></h5>
-                        <p class="card-text">
-                            <%= blog.body.length > 150 ? blog.body.substring(0, 150) + '...' : blog.body %>
-                        </p>
-                        <br />
-                        <a href="/blog/<%= blog._id %>" class="btn btn-primary mt-2">Read More</a>
-                    </div>
-                </div>
+          <% blogs.forEach((blog) => { %>
+          <div class="col">
+            <div class="card h-100 shadow-sm">
+              <img src="<%= blog.coverimageurl %>" class="card-img-top" alt="Blog cover image" style="object-fit: cover; height: 200px;">
+              <div class="card-body">
+                <h5 class="card-title text-primary fw-bold"><%= blog.title %></h5>
+                <p class="card-text">
+                  <%= blog.body.length > 150 ? blog.body.substring(0, 150) + '...' : blog.body %>
+                </p>
+                <a href="/blog/<%= blog._id %>" class="btn btn-primary mt-2">Read More</a>
+              </div>
             </div>
-            <% }) %>
-        </div>
-    </div>
-    <% } else { %>
-      <!-- If user is logged in but has no blogs -->
-      <div class="d-flex align-items-center" style="height: 100vh;">
-        <div class="mx-auto">
-          No blogs here yet.
+          </div>
+          <% }) %>
         </div>
       </div>
+    <% } else { %>
+      <div class="d-flex align-items-center" style="height: 100vh;">
+        <div class="mx-auto text-muted d-flex justify-content-center flex-column align-items-center">
+          <p> NO SUCH BLOGS PRESENT FOR NOW!</p>
+          <a href="/blog/addblog" class="btn btn-primary mt-2"> CREATE BLOG </a>
+        </div>  
+      </div>
     <% } %>
-
-  <!-- Not logged in users -->
   <% } else { %>
     <!-- Main content for guests -->
     <div class="container my-5">
-      <!-- Small description -->
       <div class="text-center mb-5">
         <p>A blogging platform designed for users to easily create and share their thoughts with the world. Whether you're an aspiring writer or an avid reader, this platform provides everything you need to get started.</p>
       </div>
 
-      <!-- Feature cards (2x2 matrix) -->
+      <!-- Feature cards for guests -->
       <div class="row row-cols-1 row-cols-md-2 g-4">
-        <!-- Feature 1 -->
         <div class="col">
-          <div class="card h-100">
+          <div class="card h-100 shadow-sm border-0">
             <div class="card-body">
-              <h5 class="card-title">Create Your Own Blog</h5>
+              <h5 class="card-title text-primary fw-bold">Create Your Own Blog</h5>
               <p class="card-text">Easily create a blog with our user-friendly editor. Customize your content with rich formatting options and publish instantly!</p>
             </div>
           </div>
         </div>
-        <!-- Feature 2 -->
         <div class="col">
-          <div class="card h-100">
+          <div class="card h-100 shadow-sm border-0">
             <div class="card-body">
-              <h5 class="card-title">Engage with the Community</h5>
+              <h5 class="card-title text-primary fw-bold">Engage with the Community</h5>
               <p class="card-text">Read blogs from other users, leave comments, and engage in meaningful discussions on a wide variety of topics.</p>
             </div>
           </div>
         </div>
-        <!-- Feature 3 -->
         <div class="col">
-          <div class="card h-100">
+          <div class="card h-100 shadow-sm border-0">
             <div class="card-body">
-              <h5 class="card-title">Personalized Dashboard</h5>
+              <h5 class="card-title text-primary fw-bold">Personalized Dashboard</h5>
               <p class="card-text">Get a personalized dashboard that tracks your favorite blogs, shows recommendations, and provides insights into your audience.</p>
             </div>
           </div>
         </div>
-        <!-- Feature 4 -->
         <div class="col">
-          <div class="card h-100">
+          <div class="card h-100 shadow-sm border-0">
             <div class="card-body">
-              <h5 class="card-title">Mobile Friendly</h5>
+              <h5 class="card-title text-primary fw-bold">Mobile Friendly</h5>
               <p class="card-text">Our platform is fully optimized for mobile devices, allowing you to create and read blogs on the go, anytime, anywhere.</p>
             </div>
           </div>
@@ -110,7 +128,7 @@
 
       <!-- Sign-up button -->
       <div class="text-center mt-5">
-        <a href="/user/signup" class="btn btn-primary btn-lg"> Sign Up Now </a>
+        <a href="/user/signup" class="btn btn-primary btn-lg">Sign Up Now</a>
       </div>
     </div>
   <% } %>
